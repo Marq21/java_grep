@@ -1,2 +1,7 @@
-package PACKAGE_NAME;public class JavaGrep {
+package run;
+
+public class JavaGrep {
+    public static void main(String[] args) {
+
+    }
 }
