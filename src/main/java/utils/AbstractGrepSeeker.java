@@ -1,12 +1,12 @@
 package utils;
 
 
-abstract public class AbstractGrepSeeker{
+abstract public class AbstractGrepSeeker {
 
     private Command utilCommand;
-    private String pathFile;
+    private final String pathFile;
 
-    public AbstractGrepSeeker(String filePath){
+    public AbstractGrepSeeker(String filePath) {
         this.pathFile = filePath;
     }
 
@@ -14,7 +14,7 @@ abstract public class AbstractGrepSeeker{
         return pathFile;
     }
 
-    public AbstractGrepSeeker(String consoleCommand, String filePath){
+    public AbstractGrepSeeker(String consoleCommand, String filePath) {
         this.pathFile = filePath;
         switch (consoleCommand) {
             case "-i":
