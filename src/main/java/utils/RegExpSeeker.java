@@ -1,22 +1,32 @@
 package utils;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class RegExpSeeker extends AbstractGrepSeeker implements GrepSeeker {
-    Pattern pattern;
-    Matcher matcher;
 
-    public RegExpSeeker(String filePath) {
-        super(filePath);
-    }
-
-    public RegExpSeeker(String consoleCommand, String filePath) {
-        super(consoleCommand, filePath);
+    public RegExpSeeker(String consoleCommand, String filePath, String keyWord) {
+        super(consoleCommand, filePath, keyWord);
     }
 
     @Override
-    public String find(String key) {
-        return null;
+    public String find() {
+        File file = new File(getPathFile());
+        List<String> list;
+        String result;
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+            list = new ArrayList<>();
+            while ((result = reader.readLine()) != null){
+                if(result.matches(getKeyWord())) {
+                    list.add(result);
+                }
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        return String.join("\n", list);
     }
 }
